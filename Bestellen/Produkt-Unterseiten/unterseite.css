@@ -1,0 +1,517 @@
+html, body {
+    background-color: rgb(235, 218, 125); /* Hintergrundfarbe der Seite */
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    height: 100%;
+    margin: 5px;          
+}
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+main {
+    flex: 1;
+}
+
+.produktbild {
+    height: 390px;
+    margin: 10px;
+    object-fit: cover;
+    border-radius: 10px; /* Ecken abgerundet */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Schatten für Tiefe */
+    transition: transform 0.3s ease; /* Übergang für Hover-Effekt */
+}
+/* Produktbild: Vergrößerung beim Hover */
+.produktbild:hover {
+    transform: scale(1.05); /* Bild leicht vergrößern */
+}
+
+#beschreibung {
+    flex: 1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Schriftart */
+    font-size: 1.1em; /* Schriftgröße */
+    color: #333; /* Textfarbe */
+    padding: 10px; /* Innenabstand */
+    background: #fff; /* Hintergrund weiß */
+    border-radius: 10px; /* Abgerundete Ecken */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Leichter Schatten */
+}
+
+#produkt {
+    display: flex;
+    justify-content: center; /* Horizontal zentriert */
+    align-items: center; /* Vertikal zentriert */
+}
+
+/* Grid layout */
+#grid {
+    margin-top: 50px; /* Abstand oben für das Grid */
+    display: grid; /* Grid-Layout aktivieren */
+    grid-template-columns: 1fr 1fr; /* Zwei Spalten im Grid */
+    margin-bottom: 30px;
+}
+#bild, .Bild1 {
+    align-items: right; /* Bildausrichtung */
+    height: 300px; /* Höhe des Bildes */
+}
+
+/* Navigation links */
+header nav a:link, header nav a:visited, header nav a:active {
+    border-style: solid; /* Rahmenstil für Links */
+    border-width: medium; /* Rahmenbreite */
+    text-align: center; /* Text zentrieren */
+    text-decoration: none; /* Unterstreichung entfernen */
+    text-transform: uppercase; /* Text in Großbuchstaben umwandeln */
+    color: black; /* Textfarbe */
+    border-color: rgb(158, 91, 15) rgb(141, 89, 29) rgb(165, 106, 39) rgb(168, 119, 12); /* Rahmenfarbe */
+    border-radius: 3px; /* Abgerundete Ecken */
+} 
+
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Schriftart */
+    font-weight: 700; /* Fett */
+    font-size: 2em; /* Größe */
+    color: #b12704; /* Rot */
+    margin-bottom: 10px; /* Abstand unten */
+}
+
+/* Absatz: Zeilenhöhe für bessere Lesbarkeit */
+p {
+    line-height: 1.6; /* Zeilenhöhe */
+}
+
+/* Zurück-Button: Hintergrundfarbe, Textfarbe, Rahmen, Innenabstand, Schriftgröße, abgerundete Ecken, Cursor und Hover-Effekt */
+.back-button {
+    background-color: #b12704; /* Hintergrund rot */
+    color: white; /* Text weiß */
+    border: none; /* Kein Rahmen */
+    padding: 10px 20px; /* Innenabstand */
+    font-size: 1em; /* Schriftgröße */
+    border-radius: 8px; /* Abgerundete Ecken */
+    cursor: pointer; /* Mauszeiger */
+    transition: background-color 0.3s ease; /* Übergang */
+    margin-top: 15px; /* Abstand oben */
+}
+.back-button:hover {
+    background-color: #8a1a03; /* Dunkleres Rot beim Hover */
+}
+
+footer nav a:link {
+    text-align: center; /* Text zentrieren */
+    text-decoration: none; /* Unterstreichung entfernen */
+    color: black; /* Textfarbe */
+}
+
+#inhalt {
+    font-size: 18px; /* Schriftgröße für den Inhalt */
+}
+
+/* Header grid2 flex container */
+#grid2 {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+}
+
+/* Logo */
+.logo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px; 
+}
+.logo {
+    height: 100px; /* Höhe des Logos */
+    width: 200px; /* Breite des Logos */
+    align-items: left; /* Logo-Ausrichtung */
+    margin-right: 40px; /* Abstand nach rechts */
+    margin-left: 10px; /* Abstand nach links */
+}
+
+/* Flex container */
+.flex-container {
+    display: flex; /* Flex-Layout aktivieren */
+    flex-direction: row; /* Flex-Elemente in einer Reihe anordnen */
+}
+
+
+/* Menu */
+#menue {
+    display: flex; /* Flexbox für das Menü aktivieren */
+    justify-content: flex-end; /* Menü rechtsbündig ausrichten */
+}
+@media (max-width: 600px) {
+    #menue {
+        flex-direction: column; /* Menüelemente untereinander anordnen */
+        align-items: flex-start; /* Links ausrichten */
+        gap: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        line-height: 1 !important;
+        font-size: 0 !important;
+    }
+    #menue a {
+        display: inline-block !important;
+        margin: 0 !important;
+        padding: 0 8px !important;
+        line-height: 1 !important;
+        height: auto !important;
+        font-size: 14px !important;
+    }
+}
+@media (max-width: 700px) {
+    main {
+        padding-top: 60px !important; /* push content down below fixed topbar */
+    }
+    .logo {
+        position: static !important;
+        margin-top: 30px !important; /* increased space below topbar */
+        width: 180px !important;
+        height: auto !important;
+        z-index: auto !important;
+        background-color: transparent !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        margin-left: 5px;
+    }
+}
+
+/* Hover effect for nav links */
+header nav a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* Topbar */
+#topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px !important;
+    background-color: rgb(235, 218, 125);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 2000;
+    overflow: visible !important;
+}
+@media (max-width: 700px) {
+    main {
+        padding-top: 60px !important;
+    }
+}
+
+/* Burger menu */
+#topbar #burger-menu {
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    position: relative;
+    z-index: 2100;
+    user-select: none;
+}
+@media (min-width: 701px) {
+    #topbar {
+        display: none;
+    }
+    #burger-menu {
+        display: none !important;
+    }
+    #menue {
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        background-color: transparent !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 5px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        transition: none !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    #menue.open {
+        right: auto !important;
+    }
+    #menue a {
+        border-style: solid !important;
+        border-width: medium !important;
+        border-color: rgb(158, 91, 15) rgb(141, 89, 29) rgb(165, 106, 39) rgb(168, 119, 12) !important;
+        padding: 4px 8px !important;
+        color: black !important;
+        text-decoration: none !important;
+        text-transform: uppercase !important;
+        border-radius: 3px !important;
+        margin-right: 3px !important;
+    }
+    #menue a:hover {
+        background-color: rgba(0,0,0,0.1) !important;
+        border-radius: 3px !important;
+    }
+}
+
+/* Sliding menu */
+#menue {
+    position: fixed;
+    top: 50px;
+    left: -250px;
+    height: calc(100vh - 50px);
+    background-color: rgb(235, 218, 125);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-top: 0;
+    padding-top: 10px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+    transition: left 0.3s ease;
+    z-index: 1500;
+    overflow-y: auto;
+}
+#menue.open {
+    left: 0;
+}
+@media (max-width: 700px) {
+    #menue {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 10px !important;
+        margin-top: 5px !important;
+        padding-top: 0 !important;
+        position: fixed !important;
+        top: 50px !important;
+        left: -250px !important;
+        width: 250px !important;
+        height: calc(100vh - 50px) !important;
+        background-color: rgb(235, 218, 125) !important;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.3) !important;
+        transition: left 0.3s ease !important;
+        z-index: 1500 !important;
+        overflow-y: auto !important;
+        display: flex !important;
+    }
+    main {
+        padding-top: 60px !important;
+    }
+    #menue.open {
+        left: 0 !important;
+    }
+    #menue a {
+        border: none !important;
+        padding: 4px 8px !important;
+        color: black !important;
+        text-decoration: none !important;
+        text-transform: uppercase !important;
+        margin-right: 5px !important;
+    }
+    #menue a:hover {
+        background-color: transparent !important;
+        border-radius: 0 !important;
+    }
+    #burger-menu {
+        display: block !important;
+    }
+}
+@media (min-width: 701px) {
+    #burger-menu {
+        display: none !important;
+    }
+}
+#navigation a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #b12704;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+footer {
+    background-color: #fae2a1; /* Heller Hintergrund */
+    padding: 20px; /* Innenabstand */
+    margin-top: 40px; /* Abstand oben */
+    text-align: center; /* Zentriert */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Schriftart */
+    color: #555; /* Textfarbe */
+    border-top: 1px solid #ddd; /* Rahmen oben */
+}
+
+footer h2 {
+    color: #b12704; /* Rot */
+    margin-bottom: 10px; /* Abstand unten */
+}
+
+footer nav a {
+    margin: 0 10px; /* Abstand links und rechts */
+    color: #b12704; /* Rot */
+    text-decoration: none; /* Keine Unterstreichung */
+    font-weight: 600; /* Fett */
+}
+footer nav a:hover {
+    text-decoration: underline; /* Unterstreichung beim Hover */
+}
+
+/* Responsive Grid: 2 Spalten bei sehr großen Bildschirmen */
+@media (min-width: 1950px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 Spalten */
+    }
+    .produkt, .produktbild {
+        height: auto;
+        max-width: 380px; /* Maximale Breite */
+    }
+    #preis {
+        margin-top: 10px; /* Abstand oben */
+        font-weight: bold; /* Fett */
+        font-size: 1.2em; /* Schriftgröße */
+        color: #b12704; /* Rot */
+    }
+}
+
+/* Responsive Grid: 2 Spalten bei großen Bildschirmen */
+@media (min-width: 1600px) and (max-width: 1949px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 Spalten */
+    }
+    .produkt, .produktbild {
+        height: auto;
+        max-width: 380px; /* Maximale Breite */
+    }
+    #preis {
+        margin-top: 10px; /* Abstand oben */
+        font-weight: bold; /* Fett */
+        font-size: 1.2em; /* Schriftgröße */
+        color: #b12704; /* Rot */
+    }
+}
+
+/* Responsive Grid: 2 Spalten bei mittleren Bildschirmen */
+@media (min-width: 1101px) and (max-width: 1599px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 Spalten */
+    }
+    .produkt, .produktbild {
+        height: auto;
+        max-width: 380px; /* Maximale Breite */
+    }
+    #preis {
+        margin-top: 10px; /* Abstand oben */
+        font-weight: bold; /* Fett */
+        font-size: 1.2em; /* Schriftgröße */
+        color: #b12704; /* Rot */
+    }
+}
+
+/* Responsive Grid: 2 Spalten bei kleineren Bildschirmen */
+@media (min-width: 851px) and (max-width: 1100px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 Spalten */
+    }
+    .produkt, .produktbild {
+        height: auto;
+        max-width: 380px; /* Maximale Breite */
+    }
+    #preis {
+        margin-top: 10px; /* Abstand oben */
+        font-weight: bold; /* Fett */
+        font-size: 1.2em; /* Schriftgröße */
+        color: #b12704; /* Rot */
+    }
+}
+
+/* Layout für mittlere bis kleine Bildschirme: Bild und Beschreibung untereinander */
+@media (min-width: 590px) and (max-width: 850px) {
+    #grid {
+        flex-direction: column; /* Bild und Beschreibung untereinander */
+    }
+    #beschreibung {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Linksbündig */
+    }
+    /* Preis: Größere Schrift, fett und rote Farbe */
+    #preis {
+        margin-top: 10px; /* Abstand oben */
+        font-weight: bold; /* Fett */
+        font-size: 1.2em; /* Schriftgröße */
+        color: #b12704; /* Rot */
+    }
+    .produkt, .produktbild {
+        height: auto;
+        max-width: 310px; /* Maximale Breite */
+    }
+}
+
+/* Layout für sehr kleine Bildschirme: Bild und Beschreibung untereinander */
+@media (min-width: 50px) and (max-width: 589px) {
+    #grid {
+        display: flex;
+        flex-direction: column; /* Bild und Beschreibung untereinander */
+        align-items: center;
+        justify-content: center;
+    }
+    #beschreibung {
+        display: block;
+        margin-top: 10px;
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+        align-self: center;
+    }
+    .produkt {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 280px;
+    }
+    /* Preis: Etwas kleinere Schrift, fett und rot */
+    #preis {
+        margin-top: 10px; /* Abstand oben */
+        font-weight: bold; /* Fett */
+        font-size: 1.1em; /* Schriftgröße */
+        color: #b12704; /* Rot */
+    }
+    .produkt, .produktbild {
+        height: auto;
+        max-width: 280px; /* Maximale Breite */
+    }
+}
+
+#Warenkorbbutton input[type="button"] {
+    background-color: #b12704; /* Rote Farbe für den Button */
+    color: white; /* Weißer Text */
+    border: none; /* Kein Rahmen */
+    padding: 12px 25px; /* Innenabstand für eine größere Fläche */
+    font-size: 1.1em; /* Schriftgröße leicht größer */
+    font-weight: bold; /* Fettdruck für besseren Textkontrast */
+    border-radius: 10px; /* Abgerundete Ecken */
+    cursor: pointer; /* Zeigt an, dass der Button klickbar ist */
+    transition: background-color 0.3s, transform 0.3s; /* Übergänge für Hover und Klick */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Leichter Schatten für Tiefe */
+    margin-top: 20px; /* Abstand nach oben */
+    width: 100%; /* Button soll die gesamte verfügbare Breite ausnutzen */
+    text-align: center; /* Text zentrieren */
+}
+
+#Warenkorbbutton input[type="button"]:hover {
+    background-color: #8a1a03; /* Dunkleres Rot, wenn man mit der Maus darüber fährt */
+    transform: scale(1.05); /* Leichtes Vergrößern des Buttons */
+}
+
+#Warenkorbbutton input[type="button"]:active {
+    background-color: #6a1202; /* Noch dunkleres Rot beim Klicken */
+    transform: scale(0.98); /* Button schrumpft leicht beim Klicken */
+}

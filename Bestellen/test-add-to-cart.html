@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Test Add to Cart Dynamic</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .produkt {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            max-width: 300px;
+        }
+        .produkt img {
+            max-width: 100%;
+            height: auto;
+        }
+        #success-message {
+            display: none;
+            color: green;
+            padding: 10px;
+            background-color: #e0f7e0;
+            border: 1px solid green;
+            margin-top: 10px;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Add to Cart mit dynamischem Laden der Produktdaten</h1>
+    <div class="produkt" data-link="Produkt-Unterseiten/produkt1.html">
+        <img src="../Bilder/Bild1.jpeg" alt="Produkt 1" />
+        <button class="add-to-cart">In den Warenkorb</button>
+    </div>
+    <div class="produkt" data-link="Produkt-Unterseiten/produkt2.html">
+        <img src="../Bilder/Bild2.jpeg" alt="Produkt 2" />
+        <button class="add-to-cart">In den Warenkorb</button>
+    </div>
+
+    <div id="success-message">
+        Produkt erfolgreich in den Warenkorb gelegt!
+        <button onclick="document.getElementById('success-message').style.display='none'" style="float: right;">Schließen</button>
+    </div>
+
+    <script>
+        async function fetchProductDetails(url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('Netzwerkantwort war nicht ok');
+                }
+                const text = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+
+                // Produktname aus #beschreibung h2 holen und "Produktname: " entfernen
+                let produktName = doc.querySelector("#beschreibung h2")?.innerText || "";
+                produktName = produktName.replace(/^Produktname:\s*/, '').trim();
+
+                // Preis aus #preis holen und in float umwandeln
+                let preisText = doc.querySelector("#preis")?.innerText || "";
+                let produktPreis = parseFloat(preisText.replace('€', '').replace(',', '.').trim());
+
+                return { name: produktName, preis: produktPreis };
+            } catch (error) {
+                console.error('Fehler beim Laden der Produktdetails:', error);
+                return null;
+            }
+        }
+
+        async function addToCartFromTest(productUrl) {
+            const produkt = await fetchProductDetails(productUrl);
+            if (!produkt) {
+                alert("Produktdetails konnten nicht geladen werden.");
+                return;
+            }
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            const normalizedProductName = produkt.name.trim().toLowerCase();
+            const existingProductIndex = cart.findIndex(item => item.name.trim().toLowerCase() === normalizedProductName);
+            if (existingProductIndex !== -1) {
+                cart[existingProductIndex].quantity = (cart[existingProductIndex].quantity || 1) + 1;
+            } else {
+                produkt.quantity = 1;
+                cart.push(produkt);
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            const successMessage = document.getElementById("success-message");
+            successMessage.style.display = "block";
+
+            setTimeout(() => {
+                successMessage.style.display = "none";
+            }, 3000);
+        }
+
+        document.querySelectorAll(".produkt").forEach(produktDiv => {
+            const button = produktDiv.querySelector(".add-to-cart");
+            if (button) {
+                button.addEventListener("click", () => {
+                    const productUrl = produktDiv.getAttribute("data-link");
+                    addToCartFromTest(productUrl);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

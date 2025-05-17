@@ -1,0 +1,78 @@
+body
+{
+    background-color: rgb(235, 218, 125); /* Hintergrundfarbe der Seite */
+    font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+}
+header
+{
+    margin: 10px; /* Abstand um den Header */
+}
+
+.logo
+{
+    height: 100px; /* Höhe des Logos */
+    width: 200px; /* Breite des Logos */
+    align-items: left; /* Logo-Ausrichtung */
+    margin-right: 30px; /* Abstand nach rechts */
+}
+header nav a:link, header nav a:visited, header nav a:active  
+{ 
+        border-style: solid; /* Rahmenstil für Links */
+        border-width: medium; /* Rahmenbreite */
+        padding: 4px 8px; /* Innenabstand */
+        text-align: center; /* Text zentrieren */
+        text-decoration: none; /* Unterstreichung entfernen */
+        text-transform: uppercase; /* Text in Großbuchstaben umwandeln */
+        color: black; /* Textfarbe */
+        border-color: rgb(158, 91, 15) rgb(141, 89, 29) rgb(165, 106, 39) rgb(168, 119, 12); /* Rahmenfarbe */
+        border-radius:3px; /* Abgerundete Ecken */
+        margin-right: 5px; /*Abstand nach rechts*/
+} 
+
+#grid2
+{
+    display: flex; /* Flex-Layout aktivieren */
+    grid-template-columns:  1fr 1fr; /* Eine Spalte im Grid */
+}
+
+footer
+{
+    margin-top: 60px;
+    background-color: rgb(248, 234, 153)
+}
+
+footer div
+{
+    text-align: center;
+}
+footer nav a:link
+{
+    text-align: center; /* Text zentrieren */
+    text-decoration: none; /* Unterstreichung entfernen */
+    color: black; /* Textfarbe */
+}
+
+
+h1, h2 {
+    color: #333;
+}
+
+p {
+    margin: 10px 0;
+}
+
+.contact-info {
+    margin-top: 20px;
+}
+
+.contact-info a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+

@@ -1,0 +1,322 @@
+html, body {
+    background-color: rgb(235, 218, 125); /* Hintergrundfarbe der Seite */
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    height: 100%;
+    margin: 5px;          
+}
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+main {
+    flex: 1;
+}
+
+/* Grid layout */
+#grid {
+    margin-top: 50px; /* Abstand oben für das Grid */
+    display: grid; /* Grid-Layout aktivieren */
+    grid-template-columns: 1fr 1fr; /* Zwei Spalten im Grid */
+    margin-bottom: 30px;
+}
+#bild, .Bild1 {
+    align-items: right; /* Bildausrichtung */
+    height: 300px; /* Höhe des Bildes */
+}
+
+/* Navigation links */
+header nav a:link, header nav a:visited, header nav a:active {
+    border-style: solid; /* Rahmenstil für Links */
+    border-width: medium; /* Rahmenbreite */
+    text-align: center; /* Text zentrieren */
+    text-decoration: none; /* Unterstreichung entfernen */
+    text-transform: uppercase; /* Text in Großbuchstaben umwandeln */
+    color: black; /* Textfarbe */
+    border-color: rgb(158, 91, 15) rgb(141, 89, 29) rgb(165, 106, 39) rgb(168, 119, 12); /* Rahmenfarbe */
+    border-radius: 3px; /* Abgerundete Ecken */
+} 
+
+footer nav a:link {
+    text-align: center; /* Text zentrieren */
+    text-decoration: none; /* Unterstreichung entfernen */
+    color: black; /* Textfarbe */
+}
+
+#inhalt {
+    font-size: 18px; /* Schriftgröße für den Inhalt */
+}
+
+/* Header grid2 flex container */
+#grid2 {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+}
+
+/* Logo */
+.logo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px; 
+}
+.logo {
+    height: 100px; /* Höhe des Logos */
+    width: 200px; /* Breite des Logos */
+    align-items: left; /* Logo-Ausrichtung */
+    margin-right: 40px; /* Abstand nach rechts */
+    margin-left: 10px; /* Abstand nach links */
+}
+
+/* Flex container */
+.flex-container {
+    display: flex; /* Flex-Layout aktivieren */
+    flex-direction: row; /* Flex-Elemente in einer Reihe anordnen */
+}
+
+/* Flex items */
+.flex-item {
+    border: 1px solid; /* Rahmen für Flex-Elemente */
+    margin: .4em; /* Außenabstand */
+    padding: .4em; /* Innenabstand */
+    background: #e4da87; /* Hintergrundfarbe */
+}
+.flex-item:nth-of-type(2) {
+    background: #ffebe6; /* Hintergrundfarbe für das zweite Element */
+}
+.flex-item:nth-of-type(3) {
+    background: #2b91bd; /* Hintergrundfarbe für das dritte Element */
+}
+.flex-item:nth-of-type(4) {
+    background: #ebf5d7; /* Hintergrundfarbe für das vierte Element */
+}
+
+/* Menu */
+#menue {
+    display: flex; /* Flexbox für das Menü aktivieren */
+    justify-content: flex-end; /* Menü rechtsbündig ausrichten */
+}
+@media (max-width: 600px) {
+    #menue {
+        flex-direction: column; /* Menüelemente untereinander anordnen */
+        align-items: flex-start; /* Links ausrichten */
+        gap: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        line-height: 1 !important;
+        font-size: 0 !important;
+    }
+    #menue a {
+        display: inline-block !important;
+        margin: 0 !important;
+        padding: 0 8px !important;
+        line-height: 1 !important;
+        height: auto !important;
+        font-size: 14px !important;
+    }
+}
+@media (max-width: 700px) {
+    main {
+        padding-top: 60px !important; /* push content down below fixed topbar */
+    }
+    .logo {
+        position: static !important;
+        margin-top: 30px !important; /* increased space below topbar */
+        width: 180px !important;
+        height: auto !important;
+        z-index: auto !important;
+        background-color: transparent !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        margin-left: 5px;
+    }
+}
+
+/* Hover effect for nav links */
+header nav a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* Topbar */
+#topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px !important;
+    background-color: rgb(235, 218, 125);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 2000;
+    overflow: visible !important;
+}
+@media (max-width: 700px) {
+    main {
+        padding-top: 60px !important;
+    }
+}
+
+/* Burger menu */
+#topbar #burger-menu {
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    position: relative;
+    z-index: 2100;
+    user-select: none;
+}
+@media (min-width: 701px) {
+    #topbar {
+        display: none;
+    }
+    #burger-menu {
+        display: none !important;
+    }
+    #menue {
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        background-color: transparent !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 5px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        transition: none !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    #menue.open {
+        right: auto !important;
+    }
+    #menue a {
+        border-style: solid !important;
+        border-width: medium !important;
+        border-color: rgb(158, 91, 15) rgb(141, 89, 29) rgb(165, 106, 39) rgb(168, 119, 12) !important;
+        padding: 4px 8px !important;
+        color: black !important;
+        text-decoration: none !important;
+        text-transform: uppercase !important;
+        border-radius: 3px !important;
+        margin-right: 3px !important;
+    }
+    #menue a:hover {
+        background-color: rgba(0,0,0,0.1) !important;
+        border-radius: 3px !important;
+    }
+}
+
+/* Sliding menu */
+#menue {
+    position: fixed;
+    top: 50px;
+    left: -250px;
+    height: calc(100vh - 50px);
+    background-color: rgb(235, 218, 125);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-top: 0;
+    padding-top: 10px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+    transition: left 0.3s ease;
+    z-index: 1500;
+    overflow-y: auto;
+}
+#menue.open {
+    left: 0;
+}
+@media (max-width: 700px) {
+    #menue {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 10px !important;
+        margin-top: 5px !important;
+        padding-top: 0 !important;
+        position: fixed !important;
+        top: 50px !important;
+        left: -250px !important;
+        width: 250px !important;
+        height: calc(100vh - 50px) !important;
+        background-color: rgb(235, 218, 125) !important;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.3) !important;
+        transition: left 0.3s ease !important;
+        z-index: 1500 !important;
+        overflow-y: auto !important;
+        display: flex !important;
+    }
+    main {
+        padding-top: 60px !important;
+    }
+    #menue.open {
+        left: 0 !important;
+    }
+    #menue a {
+        border: none !important;
+        padding: 4px 8px !important;
+        color: black !important;
+        text-decoration: none !important;
+        text-transform: uppercase !important;
+        margin-right: 5px !important;
+    }
+    #menue a:hover {
+        background-color: transparent !important;
+        border-radius: 0 !important;
+    }
+    #burger-menu {
+        display: block !important;
+    }
+}
+@media (min-width: 701px) {
+    #burger-menu {
+        display: none !important;
+    }
+}
+#navigation a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #b12704;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+footer {
+    background-color: #fae2a1; /* Heller Hintergrund */
+    padding: 20px; /* Innenabstand */
+    margin-top: 40px; /* Abstand oben */
+    text-align: center; /* Zentriert */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Schriftart */
+    color: #555; /* Textfarbe */
+    border-top: 1px solid #ddd; /* Rahmen oben */
+}
+
+footer h2 {
+    color: #b12704; /* Rot */
+    margin-bottom: 10px; /* Abstand unten */
+}
+
+footer nav a {
+    margin: 0 10px; /* Abstand links und rechts */
+    color: #b12704; /* Rot */
+    text-decoration: none; /* Keine Unterstreichung */
+    font-weight: 600; /* Fett */
+}
+footer nav a:hover {
+    text-decoration: underline; /* Unterstreichung beim Hover */
+}

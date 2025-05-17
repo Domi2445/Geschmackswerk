@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warenkorb</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../Bestellen/script.js" defer></script>
+    <script src="warenkorb.js"></script>
+</head>
+<body>
+    <div id="pagecontainer">
+        <header>
+            <div id="topbar">
+                <button id="burger-menu" aria-label="Menü öffnen">&#9776;</button>
+            </div>
+            <div id="grid2">
+                <div class="logo">
+                    <a href="../index.html"><img src="../logo.jpg" class="logo" ></a>
+                </div>
+                <div id="navigation">
+                    <nav id="menue">
+                        <a href="../index.html">Startseite</a>
+                        <a href="Bestellen.html">Bestellen</a>
+                        <a href="../AGB/AGB.html">AGB</a>
+                        <a href="../Impressum/Impressum.html">Impressum</a>
+                        <a href="../Kontakt/kontakt.html">Kontakt</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div id="warenkorb">
+                <h1>Warenkorb</h1>
+
+                <div id="warenkorb-container">
+                    <!-- Hier werden die Produkte dynamisch hinzugefügt -->
+                </div>
+
+                <div id="warenkorb-summary">
+                    <h3>Gesamtpreis: €0.00</h3>
+                <div id="warenkorb-actions">
+                    <button class="weiter-btn">Weiter einkaufen</button>
+                    <button class="clear-cart-btn">Warenkorb leeren</button>
+                    <button class="kasse-btn">Zur Kasse</button>
+                </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div>
+                <h2>Kontakt</h2>
+                <p>
+                    Settinerstr. 1 <br>
+                    97070 Würzburg <br>
+                </p>
+                <nav>
+                    <a href="Impressum/Impressum.html">Impressum</a>
+                    <a href="Bestellen/Bestellen.html">Bestellen</a>
+                    <a href="Kontakt/kontakt.html"></a>
+                    <a href="AGB/AGB.html">AGB</a>
+                </nav>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Dein externes JavaScript einbinden -->
+    <script src="warenkorb.js"></script>
+</body>
+</html>

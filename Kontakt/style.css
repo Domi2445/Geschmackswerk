@@ -1,0 +1,115 @@
+body
+{
+    background-color: rgb(235, 218, 125); 
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+header
+{
+    margin: 10px; 
+}
+
+.logo
+{
+    height: 100px; 
+    width: 200px; 
+    align-items: left; 
+    margin-right: 30px; 
+}
+header nav a:link, header nav a:visited, header nav a:active  
+{ 
+        border-style: solid; 
+        border-width: medium; 
+        padding: 4px 8px; 
+        text-align: center; 
+        text-decoration: none; 
+        text-transform: uppercase; 
+        color: black; 
+        border-color: rgb(158, 91, 15) rgb(141, 89, 29) rgb(165, 106, 39) rgb(168, 119, 12); /* Rahmenfarbe */
+        border-radius:3px; /* Abgerundete Ecken */
+        margin-right: 5px; /*Abstand nach rechts*/
+} 
+
+#grid2
+{
+    display: flex; /* Flex-Layout aktivieren */
+    grid-template-columns:  1fr 1fr; /* Eine Spalte im Grid */
+}
+
+footer
+{
+    margin-top: 60px;
+    background-color: rgb(248, 234, 153)
+}
+
+footer div
+{
+    text-align: center;
+}
+
+footer nav a:link
+{
+    text-align: center; /* Text zentrieren */
+    text-decoration: none; /* Unterstreichung entfernen */
+    color: black; /* Textfarbe */
+}
+
+h1
+ {
+    color: #333;
+    text-align: center;
+}
+
+.contact-form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}

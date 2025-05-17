@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../index.css">
+    <link rel="stylesheet" href="unterseite.css">
+    <title>Geschmackswerk </title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../script.js" defer></script>
+    <script src="backButton.js" defer></script>
+    <script src="warenkorb.js" defer></script>
+</head>
+<body>
+    <header>
+        <div id="topbar">
+            <button id="burger-menu" aria-label="Menü öffnen">&#9776;</button>
+        </div>
+        <div id="grid2">
+            <div class="logo">
+                <a href="../../index.html"><img src="../../logo.jpg" class="logo"></a>
+            </div>
+            <div id="navigation">
+                <nav id="menue">
+                    <a href="../Bestellen.html">Bestellen</a>
+                    <a href="../../AGB/AGB.html">AGB</a>
+                    <a href="../../Impressum/Impressum.html">Impressum</a>
+                    <a href="../../Kontakt/kontakt.html">Kontakt</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="product-detail">
+            <h1>Produktdetails</h1>
+            <p>Hier findest du detaillierte Informationen zu einem Produkt.</p>
+            
+            <!-- Der Zurück-Button -->
+            <button id="back-button" class="back-button" aria-label="Zurück zur vorherigen Seite">Zurück</button>
+        </div>
+
+        <div id="grid">
+            <div id="produkt">
+                <img src="../../Bilder/Bild9.png" alt="" class="produktbild">
+            </div>
+            <div id="beschreibung">
+                <h2>Produktname: Sauerkraut mit Bier und Bratwurst </h2> <!-- Dynamischer Name -->
+                <p>Diese Mahlzeit ist Perfekt geeignet zum Abschalten nach dem Feierabend. Mit <br> 
+                Bier und Sauerkraut sowie mit ein Paar Bratwürsten.</p>
+                <div id="preis">9,00€</div>
+                <div id="Warenkorbbutton">
+                    <input type="button" value="In den Warenkorb" id="add-to-cart-button">
+                </div>
+            </div>
+        </div>
+
+        <!-- Erfolgsnachricht -->
+        <div id="success-message" style="display:none; color: green; padding: 10px; background-color: #e0f7e0; border: 1px solid green; margin-top: 10px;">
+            Produkt erfolgreich in den Warenkorb gelegt!
+            <button onclick="closeSuccessMessage()" style="float: right;">Schließen</button>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <h2>Kontakt</h2>
+            <p>
+                Settinerstr. 1 <br>
+                97070 Würzburg <br>
+            </p>
+            <nav>
+                <a href="Impressum/Impressum.html">Impressum</a>
+                <a href="Bestellen/Bestellen.html">Bestellen</a>
+                <a href="Kontakt/kontakt.html"></a>
+                <a href="AGB/AGB.html">AGB</a>
+            </nav>
+        </div>
+    </footer>
+
+</body>
+</html>
