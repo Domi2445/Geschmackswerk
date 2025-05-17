@@ -434,7 +434,7 @@ main {
         box-shadow: none !important;
     }
 }
-}
+
 @media (min-width: 701px) {
     #menue {
         position: static !important;
