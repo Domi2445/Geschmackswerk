@@ -428,6 +428,12 @@ main {
     #burger-menu {
         display: block;
     }
+    #menue a {
+        border: none !important;
+        background: none !important;
+        box-shadow: none !important;
+    }
+}
 }
 @media (min-width: 701px) {
     #menue {
