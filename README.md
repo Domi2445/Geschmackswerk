@@ -1,6 +1,10 @@
 # Geschmackswerk
 Geschmackswerk
 
+Dieses Projekt ist mein Schulprojekt zur Schulischen Zwecken 
+Es soll vor allem die Wirklichkeit abbilden
+
+
 ## Projektstruktur
 
 ```
