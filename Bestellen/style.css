@@ -405,41 +405,28 @@ main {
 
 @media (max-width: 700px) {
     #menue {
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        gap: 10px !important;
-        margin-top: 5px !important;
-        padding-top: 0 !important;
-        position: fixed !important;
-        top: 50px !important;
-        left: -250px !important;
-        width: 250px !important;
-        height: calc(100vh - 50px) !important;
-        background-color: rgb(235, 218, 125) !important;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.3) !important;
-        transition: left 0.3s ease !important;
-        z-index: 1500 !important;
-        overflow-y: auto !important;
-        display: flex !important;
+        position: fixed;
+        top: 50px;
+        left: -250px;
+        width: 250px;
+        height: 100%;
+        background-color: rgb(235, 218, 125);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 0;
+        padding-top: 20px;
+        transition: left 0.3s;
+        z-index: 2000;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+        display: none; /* Standardmäßig ausblenden */
     }
     #menue.open {
-        left: 0 !important;
-    }
-    #menue a {
-        border: none !important;
-        padding: 4px 8px !important;
-        color: black !important;
-        text-decoration: none !important;
-        text-transform: uppercase !important;
-        margin-right: 5px !important;
-    }
-    #menue a:hover {
-        background-color: transparent !important;
-        border-radius: 0 !important;
+        left: 0;
+        display: flex; /* Nur wenn offen, anzeigen */
     }
     #burger-menu {
-        display: block !important;
+        display: block;
     }
 }
 @media (min-width: 701px) {
