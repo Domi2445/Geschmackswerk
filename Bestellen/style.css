@@ -432,7 +432,7 @@ main {
         border: none !important;
         background: none !important;
         box-shadow: none !important;
-        color:black;
+        color:black !important;
     }
 }
 
