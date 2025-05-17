@@ -10,6 +10,7 @@ $(document).ready(function() {
 
     // Warenkorb-Sidepanel öffnen/schließen
     $('#cart-button').on('click', function() {
+        renderCartPanelList();
         $('#cart-panel').addClass('open');
     });
     $('#close-cart').on('click', function() {
@@ -72,4 +73,26 @@ function navigateToProduct() {
     if (link) {
         window.location.href = link; // Weiterleitung zur Produktseite
     }
+}
+
+function renderCartPanelList() {
+    var cart = JSON.parse(localStorage.getItem("cart")) || [];
+    var listDiv = $("#cart-panel-list");
+    listDiv.empty();
+    if (cart.length === 0) {
+        listDiv.append('<div style="color: #888;">Ihr Warenkorb ist leer.</div>');
+        return;
+    }
+    var total = 0;
+    cart.forEach(function(item) {
+        var itemTotal = (item.preis * item.quantity);
+        total += itemTotal;
+        listDiv.append(
+            '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">'
+            + '<div>' + item.name + '<br><span style="font-size: 0.9em; color: #888;">Menge: ' + item.quantity + '</span></div>'
+            + '<div>' + itemTotal.toFixed(2) + ' €</div>'
+            + '</div>'
+        );
+    });
+    listDiv.append('<div style="border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px; text-align: right; font-weight: bold;">Gesamt: ' + total.toFixed(2) + ' €</div>');
 }
