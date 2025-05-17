@@ -419,10 +419,11 @@ main {
         transition: left 0.3s;
         z-index: 2000;
         box-shadow: 2px 0 5px rgba(0,0,0,0.2);
-        display: flex;
+        display: none; /* Standardmäßig ausblenden */
     }
     #menue.open {
         left: 0;
+        display: flex; /* Nur wenn offen, anzeigen */
     }
     #burger-menu {
         display: block;
