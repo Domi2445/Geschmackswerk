@@ -60,3 +60,20 @@ function navigateToProduct() {
         window.location.href = link; // Weiterleitung zur Produktseite
     }
 }
+
+// Warenkorb-Sidepanel öffnen/schließen
+$(document).ready(function() {
+    $('#cart-button').on('click', function() {
+        $('#cart-panel').addClass('open');
+    });
+    $('#close-cart').on('click', function() {
+        $('#cart-panel').removeClass('open');
+    });
+    // Optional: Panel schließen, wenn man außerhalb klickt
+    $(document).on('mousedown', function(e) {
+        var panel = $('#cart-panel');
+        if (panel.hasClass('open') && !panel.is(e.target) && panel.has(e.target).length === 0 && !$('#cart-button').is(e.target)) {
+            panel.removeClass('open');
+        }
+    });
+});
