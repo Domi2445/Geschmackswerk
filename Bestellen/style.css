@@ -291,14 +291,14 @@ main {
 
 #cart-button {
     background: #fffbe6;
-    border: 2px solid #4CAF50;
+    border: 2px solid #b8860b;
     border-radius: 6px;
     padding: 8px 16px;
     font-size: 1.1em;
     cursor: pointer;
     transition: background 0.2s;
     font-weight: bold;
-    color: #4CAF50;
+    color: #b12704;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -309,11 +309,12 @@ main {
 }
 
 #cart-count {
-    background-color: #4CAF50;
-    color: white;
+    background-color: transparent;
+    color: #b12704;
+    font-weight: bold;
     padding: 2px 6px;
     border-radius: 50%;
-    font-size: 0.9em;
+    font-size: 1.1em;
 }
 
 #cart-panel {
