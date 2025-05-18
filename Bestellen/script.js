@@ -140,3 +140,11 @@ function warenkorbPanelListeRendern() {
     });
     listenDiv.append('<div style="border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px; text-align: right; font-weight: bold;">Gesamt: ' + gesamt.toFixed(2) + ' €</div>');
 }
+
+function warenkorbZaehlerAktualisieren() {
+    var warenkorb = JSON.parse(localStorage.getItem("cart")) || [];
+    var gesamtAnzahl = warenkorb.reduce(function(summe, artikel) {
+        return summe + (artikel.quantity || 0);
+    }, 0);
+    $("#cart-count").text(gesamtAnzahl);
+}
