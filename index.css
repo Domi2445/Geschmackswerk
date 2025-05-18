@@ -26,6 +26,36 @@ main {
     height: 300px; /* Höhe des Bildes */
 }
 
+/* Grid für Header */
+#grid2 {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 32px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#cart-button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#cart-button {
+    background: #fffbe6;
+    border: 2px solid #b8860b;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-weight: bold;
+    color: #b12704;
+}
+#cart-button:hover {
+    background: #f7e49c;
+}
+
 /* Navigation links */
 /* /* header nav a:link, header nav a:visited, header nav a:active { */
     /* border-style: solid; Rahmenstil für Links */
