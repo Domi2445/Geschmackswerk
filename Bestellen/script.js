@@ -1,31 +1,37 @@
-$(document).ready(function() {
-    // Produkt-Interaktionen
+$(document).ready(initialisierung);
+
+// Initialisierung: Setzt alle Event-Listener und Interaktionen
+function initialisierung() {
+    // Hover-Effekt für Produkte
     $(".produkt").hover(bildVergroessern, bildZuruecksetzen);
-    toggleBurgerMenu();
-    burgerMenuClickHandler();
+    // Burger-Menü anpassen je nach Fenstergröße
+    burgerMenueUmschalten();
+    burgerMenueClickHandler();
     $(window).resize(function () {
-        toggleBurgerMenu();
+        burgerMenueUmschalten();
     });
-    $(".produktbild").click(navigateToProduct);
+    // Klick auf Produktbild führt zur Produktseite
+    $(".produktbild").click(navigiereZuProdukt);
 
     // Warenkorb-Sidepanel öffnen/schließen
     $('#cart-button').on('click', function() {
-        renderCartPanelList();
+        warenkorbPanelListeRendern();
         $('#cart-panel').addClass('open');
     });
     $('#close-cart').on('click', function() {
         $('#cart-panel').removeClass('open');
     });
-    // Optional: Panel schließen, wenn man außerhalb klickt
+    // Panel schließen, wenn man außerhalb klickt
     $(document).on('mousedown', function(e) {
         var panel = $('#cart-panel');
         if (panel.hasClass('open') && !panel.is(e.target) && panel.has(e.target).length === 0 && !$('#cart-button').is(e.target)) {
             panel.removeClass('open');
         }
     });
-});
+}
 
-function toggleBurgerMenu() {
+// Passt das Burger-Menü an die Fenstergröße an
+function burgerMenueUmschalten() {
     if ($(window).width() < 700) {
         $("#burger-menu").show();
         $("#menue").removeClass("open").css("left", "-250px");
@@ -36,7 +42,8 @@ function toggleBurgerMenu() {
     }
 }
 
-function burgerMenuClickHandler() {
+// Öffnet/schließt das Burger-Menü bei Klick
+function burgerMenueClickHandler() {
     $("#burger-menu").off("click").on("click", function () {
         if ($("#menue").hasClass("open")) {
             $("#menue").removeClass("open").css("left", "-250px");
@@ -46,6 +53,7 @@ function burgerMenuClickHandler() {
     });
 }
 
+// Vergrößert das Produktbild beim Hover
 function bildVergroessern() {
     $(this).find(".produktbild").stop().css({
         transform: 'scale(1.05)',
@@ -57,6 +65,7 @@ function bildVergroessern() {
     });
 }
 
+// Setzt das Produktbild wieder auf Normalgröße
 function bildZuruecksetzen() {
     $(this).find(".produktbild").stop().css({
         transform: 'scale(1)',
@@ -68,31 +77,33 @@ function bildZuruecksetzen() {
     });
 }
 
-function navigateToProduct() {
-    var link = $(this).data("link"); // Link aus dem "data-link"-Attribut abrufen
+// Leitet beim Klick auf ein Produktbild zur Produktseite weiter
+function navigiereZuProdukt() {
+    var link = $(this).data("link");
     if (link) {
-        window.location.href = link; // Weiterleitung zur Produktseite
+        window.location.href = link;
     }
 }
 
-function renderCartPanelList() {
-    var cart = JSON.parse(localStorage.getItem("cart")) || [];
-    var listDiv = $("#cart-panel-list");
-    listDiv.empty();
-    if (cart.length === 0) {
-        listDiv.append('<div style="color: #888;">Ihr Warenkorb ist leer.</div>');
+// Rendert die Produktliste im Warenkorb-Sidepanel
+function warenkorbPanelListeRendern() {
+    var warenkorb = JSON.parse(localStorage.getItem("cart")) || [];
+    var listenDiv = $("#cart-panel-list");
+    listenDiv.empty();
+    if (warenkorb.length === 0) {
+        listenDiv.append('<div style="color: #888;">Ihr Warenkorb ist leer.</div>');
         return;
     }
-    var total = 0;
-    cart.forEach(function(item) {
-        var itemTotal = (item.preis * item.quantity);
-        total += itemTotal;
-        listDiv.append(
+    var gesamt = 0;
+    warenkorb.forEach(function(artikel) {
+        var artikelGesamt = (artikel.preis * artikel.quantity);
+        gesamt += artikelGesamt;
+        listenDiv.append(
             '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">'
-            + '<div>' + item.name + '<br><span style="font-size: 0.9em; color: #888;">Menge: ' + item.quantity + '</span></div>'
-            + '<div>' + itemTotal.toFixed(2) + ' €</div>'
+            + '<div>' + artikel.name + '<br><span style="font-size: 0.9em; color: #888;">Menge: ' + artikel.quantity + '</span></div>'
+            + '<div>' + artikelGesamt.toFixed(2) + ' €</div>'
             + '</div>'
         );
     });
-    listDiv.append('<div style="border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px; text-align: right; font-weight: bold;">Gesamt: ' + total.toFixed(2) + ' €</div>');
+    listenDiv.append('<div style="border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px; text-align: right; font-weight: bold;">Gesamt: ' + gesamt.toFixed(2) + ' €</div>');
 }
