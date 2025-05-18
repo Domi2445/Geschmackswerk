@@ -48,6 +48,11 @@ function addToCart() {
     setTimeout(() => {
         successMessage.style.display = "none";
     }, 3000); // Nachricht nach 3 Sekunden ausblenden
+
+    // Zähler aktualisieren
+    if (typeof warenkorbZaehlerAktualisieren === 'function') {
+        warenkorbZaehlerAktualisieren();
+    }
 }
 
 // Event Listener für den "In den Warenkorb"-Button
