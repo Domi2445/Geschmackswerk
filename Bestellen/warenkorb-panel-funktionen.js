@@ -52,4 +52,5 @@ function warenkorbZaehlerAktualisieren() {
         return summe + (artikel.quantity || 0);
     }, 0);
     $("#cart-count").text(gesamtAnzahl);
-} 
+}
+window.warenkorbZaehlerAktualisieren = warenkorbZaehlerAktualisieren; 
