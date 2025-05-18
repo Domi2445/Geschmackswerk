@@ -1,72 +1,73 @@
 // script.js
 
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Verhindert das Standard-Verhalten des Formulars
+$(document).ready(initialisierung);
 
-    // Die Werte der Felder holen
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var subject = document.getElementById('subject').value;
-    var message = document.getElementById('message').value;
+// Initialisierung: Setzt Event-Listener für das Kontaktformular
+function initialisierung() {
+    // Beim Absenden des Formulars eigene Logik ausführen
+    $('#kontaktformular').on('submit', function(event) {
+        event.preventDefault(); // Verhindert das Standard-Verhalten des Formulars
 
-    var hasError = false;
+        // Werte der Felder holen
+        var name = $('#name').val();
+        var email = $('#email').val();
+        var betreff = $('#betreff').val();
+        var nachricht = $('#nachricht').val();
 
-    // Überprüfung der Eingabefelder
-    if (name === "") 
-        {
-        showError('name', 'Bitte geben Sie Ihren Namen ein.');
-        hasError = true;
+        var fehlerGefunden = false;
+
+        // Überprüfung der Eingabefelder
+        if (name === "") {
+            zeigeFehler('name', 'Bitte geben Sie Ihren Namen ein.');
+            fehlerGefunden = true;
         }
-    if (email === "") 
-        {
-        showError('email', 'Bitte geben Sie Ihre E-Mail-Adresse ein.');
-        hasError = true;
-        } 
-        else if (!validateEmail(email)) {
-        showError('email', 'Bitte geben Sie eine gültige E-Mail-Adresse ein (mit @).');
-        hasError = true;
-    }
-    if (subject === "") {
-        showError('subject', 'Bitte geben Sie einen Betreff ein.');
-        hasError = true;
-    }
-    if (message === "") {
-        showError('message', 'Bitte geben Sie eine Nachricht ein.');
-        hasError = true;
-    }
+        if (email === "") {
+            zeigeFehler('email', 'Bitte geben Sie Ihre E-Mail-Adresse ein.');
+            fehlerGefunden = true;
+        } else if (!emailGueltig(email)) {
+            zeigeFehler('email', 'Bitte geben Sie eine gültige E-Mail-Adresse ein (mit @).');
+            fehlerGefunden = true;
+        }
+        if (betreff === "") {
+            zeigeFehler('betreff', 'Bitte geben Sie einen Betreff ein.');
+            fehlerGefunden = true;
+        }
+        if (nachricht === "") {
+            zeigeFehler('nachricht', 'Bitte geben Sie eine Nachricht ein.');
+            fehlerGefunden = true;
+        }
 
-    // Wenn ein Fehler vorliegt, brechen wir den Absendevorgang ab
-    if (hasError) {
-        return;
-    }
+        // Wenn ein Fehler vorliegt, Formular nicht absenden
+        if (fehlerGefunden) {
+            return;
+        }
 
-    // Erfolgreiches Absenden der Nachricht
-    Swal.fire({
-        icon: 'success',
-        title: 'Nachricht gesendet!',
-        text: 'Vielen Dank für Ihre Nachricht. Wir werden uns bald bei Ihnen melden.',
-        confirmButtonText: 'Okay'
-    });
+        // Erfolgreiches Absenden der Nachricht
+        Swal.fire({
+            icon: 'success',
+            title: 'Nachricht gesendet!',
+            text: 'Vielen Dank für Ihre Nachricht. Wir werden uns bald bei Ihnen melden.',
+            confirmButtonText: 'Okay'
+        });
 
-    // Formular zurücksetzen
-    document.getElementById('contactForm').reset();
-});
-
-// Funktion zur Anzeige einer Fehlernachricht mi
-
-tSweetAlert2
-function showError(fieldId, message) {
-    Swal.fire({
-        icon: 'error',
-        title: 'Fehler',
-        text: message,
-        confirmButtonText: 'Schließen'
-    }).then(function() {
-        document.getElementById(fieldId).focus(); // Setzt den Fokus auf das fehlerhafte Feld
+        // Formular zurücksetzen
+        $('#kontaktformular')[0].reset();
     });
 }
 
-// Funktion zur Überprüfung der E-Mail-Adresse (ob sie ein "@" enthält)
-function validateEmail(email) {
+// Zeigt eine Fehlernachricht mit SweetAlert2 an und setzt den Fokus auf das fehlerhafte Feld
+function zeigeFehler(feldId, nachricht) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Fehler',
+        text: nachricht,
+        confirmButtonText: 'Schließen'
+    }).then(function() {
+        $('#' + feldId).focus();
+    });
+}
+
+// Überprüft, ob die E-Mail-Adresse ein "@" enthält
+function emailGueltig(email) {
     return email.includes('@');
 }

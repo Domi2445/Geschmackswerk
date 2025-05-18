@@ -1,112 +1,106 @@
 // cart-panel.js
 
+// Initialisierung: Wird beim Laden des Dokuments ausgeführt
+function initialisierung() {
+    // Füge Event-Listener zu allen "In den Warenkorb" Buttons hinzu
+    $(".produkt").each(function() {
+        var knopf = $(this).find(".add-to-cart");
+        var bild = $(this).find(".produktbild");
+        if (knopf.length && bild.length) {
+            // Beim Klick auf den Button das Produkt zum Warenkorb hinzufügen
+            knopf.on("click", function() {
+                var produktUrl = bild.data("link");
+                if (produktUrl) {
+                    console.log("Versuche Produkt hinzuzufügen:", produktUrl);
+                    produktZuWarenkorbHinzufuegen(produktUrl);
+                } else {
+                    alert("Produkt-URL nicht gefunden!");
+                }
+            });
+        }
+    });
+    // Aktualisiere den Warenkorb-Zähler beim Laden der Seite
+    warenkorbZaehlerAktualisieren();
+}
+
+// Starte die Initialisierung, sobald das Dokument bereit ist
+$(document).ready(initialisierung);
+
 /**
- * Lädt die Produktdetails von der Produkt-Unterseite
+ * Holt Produktdetails (Name, Preis) von einer Produkt-Unterseite per AJAX (jQuery)
  * @param {string} url - Die URL der Produkt-Unterseite
- * @returns {Promise<{name: string, preis: number}>} - Ein Objekt mit Produktname und Preis
+ * @returns {Promise<{name: string, preis: number}>} - Ein Promise mit Produktname und Preis
  */
-async function fetchProductDetails(url) {
-    try {
-        const absoluteUrl = new URL(url, window.location.href).href;
-        console.log("Lade Produkt von URL:", absoluteUrl);
-        
-        const response = await fetch(absoluteUrl);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const text = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, 'text/html');
-
-        console.log("Gefundene Elemente:", {
-            beschreibung: doc.querySelector("#beschreibung h2")?.innerText,
-            preis: doc.querySelector("#preis")?.innerText
-        });
-
-        let produktName = doc.querySelector("#beschreibung h2")?.innerText;
-        if (!produktName) {
-            throw new Error("Produktname nicht gefunden. Bitte überprüfen Sie die Struktur der Produktseite.");
-        }
-
-        let preisText = doc.querySelector("#preis")?.innerText;
-        if (!preisText) {
-            throw new Error("Preis nicht gefunden. Bitte überprüfen Sie die Struktur der Produktseite.");
-        }
-
-        preisText = preisText.replace('€', '').replace(',', '.').trim();
-        let produktPreis = parseFloat(preisText);
-        
-        if (isNaN(produktPreis)) {
-            throw new Error(`Ungültiger Preis: ${preisText}`);
-        }
-
-        return { name: produktName, preis: produktPreis };
-    } catch (error) {
-        console.error('Fehler beim Laden der Produktdetails:', error);
-        alert(`Fehler beim Laden des Produkts: ${error.message}`);
-        return null;
-    }
-}
-
-// Funktion zum Aktualisieren des Warenkorb-Zählers
-function updateCartCount() {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById("cart-count").textContent = totalItems;
-}
-
-// Modifiziere die bestehende addToCartFromTest Funktion
-async function addToCartFromTest(productUrl) {
-    try {
-        const produkt = await fetchProductDetails(productUrl);
-        if (!produkt) {
-            return;
-        }
-
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        
-        const normalizedProductName = produkt.name.trim().toLowerCase();
-        const existingProductIndex = cart.findIndex(item => item.name.trim().toLowerCase() === normalizedProductName);
-        
-        if (existingProductIndex !== -1) {
-            cart[existingProductIndex].quantity = (cart[existingProductIndex].quantity || 1) + 1;
-        } else {
-            produkt.quantity = 1;
-            cart.push(produkt);
-        }
-
-        localStorage.setItem("cart", JSON.stringify(cart));
-        updateCartCount();
-
-        const successMessage = document.getElementById("success-message");
-        successMessage.style.display = "block";
-
-        setTimeout(() => {
-            successMessage.style.display = "none";
-        }, 3000);
-    } catch (error) {
-        console.error('Fehler beim Hinzufügen zum Warenkorb:', error);
-        alert(`Fehler beim Hinzufügen zum Warenkorb: ${error.message}`);
-    }
-}
-
-// Füge Event-Listener zu allen "In den Warenkorb" Buttons hinzu
-document.querySelectorAll(".produkt").forEach(produktDiv => {
-    const button = produktDiv.querySelector(".add-to-cart");
-    const img = produktDiv.querySelector(".produktbild");
-    if (button && img) {
-        button.addEventListener("click", () => {
-            const productUrl = img.getAttribute("data-link");
-            if (productUrl) {
-                console.log("Versuche Produkt hinzuzufügen:", productUrl);
-                addToCartFromTest(productUrl);
-            } else {
-                alert("Produkt-URL nicht gefunden!");
+function produktdetailsLaden(url) {
+    return new Promise(function(erfolgreich, fehlgeschlagen) {
+        var absoluteUrl = new URL(url, window.location.href).href;
+        // Lade die Produktseite per AJAX
+        $.get(absoluteUrl, function(daten) {
+            // Parse das HTML der Produktseite
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(daten, 'text/html');
+            // Hole Name und Preis aus der Seite
+            var produktName = $(doc).find("#beschreibung h2").text();
+            var preisText = $(doc).find("#preis").text();
+            if (!produktName) {
+                fehlgeschlagen("Produktname nicht gefunden. Bitte überprüfen Sie die Struktur der Produktseite.");
+                return;
             }
+            if (!preisText) {
+                fehlgeschlagen("Preis nicht gefunden. Bitte überprüfen Sie die Struktur der Produktseite.");
+                return;
+            }
+            // Preis-Text bereinigen und in Zahl umwandeln
+            preisText = preisText.replace('€', '').replace(',', '.').trim();
+            var produktPreis = parseFloat(preisText);
+            if (isNaN(produktPreis)) {
+                fehlgeschlagen("Ungültiger Preis: " + preisText);
+                return;
+            }
+            // Produktdaten zurückgeben
+            erfolgreich({ name: produktName, preis: produktPreis });
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            fehlgeschlagen("Fehler beim Laden des Produkts: " + textStatus);
         });
-    }
-});
+    });
+}
 
-// Initialisiere den Warenkorb-Zähler beim Laden der Seite
-updateCartCount(); 
+// Zählt die Gesamtanzahl der Produkte im Warenkorb und zeigt sie im Warenkorb-Icon an
+function warenkorbZaehlerAktualisieren() {
+    const warenkorb = JSON.parse(localStorage.getItem("cart")) || [];
+    const gesamtAnzahl = warenkorb.reduce((summe, artikel) => summe + artikel.quantity, 0);
+    $("#cart-count").text(gesamtAnzahl);
+}
+
+// Fügt ein Produkt zum Warenkorb hinzu (wird von den Produkt-Buttons aufgerufen)
+function produktZuWarenkorbHinzufuegen(produktUrl) {
+    produktdetailsLaden(produktUrl)
+        .then(function(produktObjekt) {
+            // Warenkorb aus dem localStorage holen
+            let warenkorb = JSON.parse(localStorage.getItem("cart")) || [];
+            // Prüfen, ob das Produkt schon im Warenkorb ist
+            const normalisierterName = produktObjekt.name.trim().toLowerCase();
+            const vorhandenerIndex = warenkorb.findIndex(artikel => artikel.name.trim().toLowerCase() === normalisierterName);
+            if (vorhandenerIndex !== -1) {
+                // Menge erhöhen, falls schon vorhanden
+                warenkorb[vorhandenerIndex].quantity = (warenkorb[vorhandenerIndex].quantity || 1) + 1;
+            } else {
+                // Neues Produkt mit Menge 1 hinzufügen
+                produktObjekt.quantity = 1;
+                warenkorb.push(produktObjekt);
+            }
+            // Warenkorb speichern
+            localStorage.setItem("cart", JSON.stringify(warenkorb));
+            // Zähler aktualisieren
+            warenkorbZaehlerAktualisieren();
+            // Erfolgsmeldung anzeigen
+            $("#success-message").show();
+            setTimeout(function() {
+                $("#success-message").fadeOut();
+            }, 3000);
+        })
+        .catch(function(fehler) {
+            // Fehler anzeigen
+            alert(fehler);
+        });
+} 
