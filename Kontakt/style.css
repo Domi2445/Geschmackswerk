@@ -68,6 +68,8 @@ h1
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: center;
 }
 
 .contact-form-container h2 {
@@ -113,3 +115,69 @@ h1
 .submit-button:hover {
     background-color: #0056b3;
 }
+
+@media (max-width: 700px) {
+    #menue {
+        position: fixed;
+        top: 50px;
+        left: -250px;
+        width: 250px;
+        height: 100%;
+        background-color: rgb(235, 218, 125);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 0;
+        padding-top: 20px;
+        transition: left 0.3s;
+        z-index: 2000;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+        display: none; /* Standardmäßig ausblenden */
+    }
+    #menue.open {
+        left: 0;
+        display: flex; /* Nur wenn offen, anzeigen */
+    }
+    #burger-menu {
+        display: block;
+    }
+    #menue a {
+        border: none !important;
+        background: none !important;
+        box-shadow: none !important;
+        color:black !important;
+    }
+    .cart-button-container, .cart-button
+    {
+        margin-top: 60px;
+    }
+    .logo
+    {
+        margin-top: 30px;
+    }
+
+ 
+}
+
+@media (min-width: 701px) {
+    #menue {
+        position: static ;
+        width: auto ;
+        height: auto ;
+        background-color: transparent ;
+        display: flex ;
+        flex-direction: row ;
+        align-items: center ;
+        justify-content: flex-end ;
+        gap: 5px ;
+        margin: 0 ;
+        padding: 0 ;
+        box-shadow: none ;
+        transition: none ;
+    }
+    #burger-menu {
+        display: none ;
+    }
+
+}
+
