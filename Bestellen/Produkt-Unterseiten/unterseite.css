@@ -107,13 +107,6 @@ footer nav a:link {
     font-size: 18px; /* Schriftgröße für den Inhalt */
 }
 
-/* Header grid2 flex container */
-#grid2 {
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-}
-
 /* Logo */
 .logo img {
     max-width: 100%;

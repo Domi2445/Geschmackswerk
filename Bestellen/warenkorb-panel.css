@@ -47,6 +47,7 @@
     font-size: 1.1em;
     font-weight: bold;
     display: block;
+    color: white;
 }
 .cart-panel-btn:first-child {
     background: #4CAF50;
