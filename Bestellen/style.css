@@ -49,10 +49,11 @@ header nav a:link, header nav a:visited, header nav a:active
 
 #grid2 {
     display: grid;
-    grid-template-columns: auto 1fr auto; /* Logo - Navigation - Warenkorb */
+    grid-template-columns: auto 1fr auto;
     align-items: center;
-    gap: 20px;
-    width: 100%;
+    gap: 32px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 footer
@@ -284,8 +285,8 @@ main {
 }
 
 #cart-button-container {
-    grid-column: 3;
-    justify-self: end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 #cart-button {
@@ -455,5 +456,20 @@ main {
     #burger-menu {
         display: none !important;
     }
+}
+
+/* Logo */
+.logo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+.logo {
+    height: 100px;
+    width: 200px;
+    align-items: left;
+    margin-right: 40px;
+    margin-left: 10px;
 }
 
