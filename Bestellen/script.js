@@ -1,4 +1,37 @@
-$(document).ready(initialisierung);
+$(document).ready(function() {
+    initialisierung();
+    // Add-to-cart für alle Buttons auf der Bestellen-Seite
+    $(".add-to-cart").on("click", function() {
+        var produktDiv = $(this).closest(".produkt");
+        var produktbild = produktDiv.find(".produktbild");
+        var produktUrl = produktbild.data("link");
+        if (!produktUrl) return;
+        // Produkt-Unterseite per AJAX laden
+        $.get(produktUrl, function(data) {
+            // Name aus <h2> ("Produktname: ...")
+            var nameMatch = data.match(/<h2[^>]*>\s*Produktname:\s*([^<]+)<\/h2>/);
+            var produktName = nameMatch ? nameMatch[1].trim() : "Produkt";
+            // Preis aus <div id="preis">...
+            var preisMatch = data.match(/<div[^>]*id=["']preis["'][^>]*>([^<]+)<\/div>/);
+            var preisText = preisMatch ? preisMatch[1].replace('€','').replace(',','.').trim() : "0";
+            var produktPreis = parseFloat(preisText);
+            // Warenkorb aus localStorage holen
+            var cart = JSON.parse(localStorage.getItem("cart")) || [];
+            var normalizedName = produktName.toLowerCase();
+            var existingIndex = cart.findIndex(function(item) { return (item.name||"").toLowerCase() === normalizedName; });
+            if (existingIndex !== -1) {
+                cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
+            } else {
+                cart.push({ name: produktName, preis: produktPreis, quantity: 1 });
+            }
+            localStorage.setItem("cart", JSON.stringify(cart));
+            warenkorbZaehlerAktualisieren();
+            // Erfolgsnachricht anzeigen
+            $("#success-message").show();
+            setTimeout(function() { $("#success-message").fadeOut(); }, 2000);
+        });
+    });
+});
 
 // Initialisierung: Setzt alle Event-Listener und Interaktionen
 function initialisierung() {
