@@ -1,3 +1,6 @@
+// Event Listener für den "In den Warenkorb"-Button
+document.getElementById("add-to-cart-button").addEventListener("click", addToCart);
+
 // Funktion zum Abrufen des Produktnamens und Preises
 function getProductDetails() {
     // Den Produktnamen aus dem h2-Tag holen und "Produktname: " entfernen
@@ -55,8 +58,7 @@ function addToCart() {
     }
 }
 
-// Event Listener für den "In den Warenkorb"-Button
-document.getElementById("add-to-cart-button").addEventListener("click", addToCart);
+
 
 // Funktion zum Schließen der Erfolgsmeldung
 function closeSuccessMessage() {

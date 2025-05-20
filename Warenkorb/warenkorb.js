@@ -15,7 +15,7 @@ function initialisierung() {
 
     // Event Listener für "Weiter einkaufen"-Button
     $(".weiter-btn").on('click', function() {
-        window.location.href = '../index.html';
+        window.location.href = '../Bestellen.html';
     });
     // Event Listener für "Warenkorb leeren"-Button
     $(".clear-cart-btn").on('click', function() {
