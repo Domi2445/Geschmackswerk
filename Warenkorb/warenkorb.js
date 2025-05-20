@@ -25,10 +25,7 @@ function initialisierung() {
     });
     // Event Listener für "Zur Kasse"-Button
     $(".kasse-btn").on('click', function() {
-        localStorage.removeItem('cart');
-        window.location.reload();
-        window.dispatchEvent(new Event('storage'));
-        alert("Sie haben erfolgreich Bezahlt \nDie Bestellung wurde erfolgreich abgeschlossen");
+       window.location.href = '../kasse/Kasse.html';
     });
     // Beim Laden der Seite den Warenkorb laden
     warenkorbLaden();
