@@ -99,7 +99,7 @@ footer nav a:link {
     }
     .logo {
         position: static !important;
-        margin-top: 30px !important; /* increased space below topbar */
+        margin-top: 40px !important; /* increased space below topbar */
         width: 180px !important;
         height: auto !important;
         z-index: auto !important;
