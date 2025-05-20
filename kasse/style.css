@@ -1,0 +1,108 @@
+/* Allgemeine Einstellungen */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+h1, h2, h3 {
+    color: #333;
+}
+
+.checkout-container {
+    width: 80%;
+    max-width: 900px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Warenkorb Anzeige */
+#cart-items {
+    margin-bottom: 20px;
+}
+
+#total-amount {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* Zahlungsmethoden */
+h2 {
+    margin-top: 30px;
+    font-size: 1.2em;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+#card-details {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Lieferoptionen */
+h3 {
+    margin-top: 30px;
+    font-size: 1.2em;
+}
+
+/* Bestellbutton */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 32px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Responsives Design */
+@media (max-width: 768px) {
+    .checkout-container {
+        width: 90%;
+    }
+
+    input[type="text"] {
+        font-size: 1em;
+    }
+
+    button {
+        width: 100%;
+        padding: 14px;
+    }
+}

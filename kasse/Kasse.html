@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warenkorb und Bezahlung</title>
+    <link rel="stylesheet" href="../index-cleaned.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scipt.js"></script>
+</head>
+<body>
+    <!-- Header mit Navigation -->
+    <header>
+        <div id="topbar">
+            <button id="burger-menu" aria-label="Menü öffnen">&#9776;</button>
+        </div>
+        <div id="grid2">
+            <div class="logo">
+                <a href="../index.html"><img src="../logo.jpg" class="logo" alt="Logo"></a>
+            </div>
+            <div id="navigation">
+                <nav id="menue">
+                    <a href="../index.html">Startseite</a>
+                    <a href="../Bestellen/Bestellen.html">Bestellen</a>
+                    <a href="../AGB/AGB.html">AGB</a>
+                    <a href="../Impressum/Impressum.html">Impressum</a>
+                    <a href="../Kontakt/kontakt.html">Kontakt</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hauptinhalt (Warenkorb und Bezahlung) -->
+    <main>
+        <div class="checkout-container">
+            <h1>Warenkorb und Bezahlung</h1>
+
+            <!-- Warenkorb-Anzeige -->
+            <div id="cart-items"></div>
+            <div>
+                <h3>Gesamtbetrag: <span id="total-amount">0,00 €</span></h3>
+            </div>
+
+            <!-- Zahlungsmethoden -->
+            <div>
+                <h2>Wählen Sie Ihre Zahlungsmethode</h2>
+
+                <!-- Mit Karte bezahlen -->
+                <label>
+                    <input type="radio" name="payment-method" value="card" id="card-payment">
+                    Mit Karte bezahlen
+                </label>
+                <div id="card-details" style="display:none;">
+                    <label for="card-number">Kartennummer:</label>
+                    <input type="text" id="card-number" name="card-number">
+                    <label for="expiry-date">Gültigkeit:</label>
+                    <input type="text" id="expiry-date" name="expiry-date">
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv">
+                </div>
+
+            
+
+                <!-- Barzahlung bei Lieferung -->
+                <label>
+                    <input type="radio" name="payment-method" value="cash" id="cash-payment">
+                    Barzahlung bei Lieferung
+                </label>
+
+                <h3>Wählen Sie eine Lieferoption</h3>
+                <label>
+                    <input type="radio" name="delivery-method" value="pickup" id="pickup">
+                    Abholung
+                </label>
+                <label>
+                    <input type="radio" name="delivery-method" value="delivery" id="delivery">
+                    Lieferung
+                </label>
+
+                <button id="confirm-order">Bestellung bestätigen</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div>
+            <h2>Kontakt</h2>
+            <p>
+                Settinerstr. 1 <br>
+                97070 Würzburg <br>
+            </p>
+            <nav>
+                <a href="../Impressum/Impressum.html">Impressum</a>
+                <a href="../Bestellen/Bestellen.html">Bestellen</a>
+                <a href="../Kontakt/kontakt.html">Kontakt</a>
+                <a href="../AGB/AGB.html">AGB</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>
