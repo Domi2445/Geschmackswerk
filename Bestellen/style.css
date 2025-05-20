@@ -454,6 +454,11 @@ main {
         margin-top: 60px !important;
     }
 
+    #cart-panel
+    {
+        width: 300px !important;
+    }
+
 }
 
 @media (min-width: 701px) {
