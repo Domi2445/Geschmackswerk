@@ -443,7 +443,7 @@ main {
     }
     .logo {
         position: static !important;
-        margin-top: 40px !important; /* increased space below topbar */
+        margin-top: 70px !important; /* increased space below topbar */
         width: 180px !important;
         height: auto !important;
         z-index: auto !important;
