@@ -441,17 +441,11 @@ main {
         box-shadow: none !important;
         color:black !important;
     }
-    .logo {
-        position: static !important;
-        margin-top: 70px !important; /* increased space below topbar */
-        width: 180px !important;
-        height: auto !important;
-        z-index: auto !important;
-        background-color: transparent !important;
+    .logo, .cart-item
+    {
+        margin-top: 40px !important;
         padding: 0 !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-        margin-left: 5px;
+        
     }
 }
 
