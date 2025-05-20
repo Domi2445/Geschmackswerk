@@ -441,7 +441,7 @@ main {
         box-shadow: none !important;
         color:black !important;
     }
-    .logo, .cart-item
+    .logo
     {
         margin-top: 30px !important;
         padding: 0 !important;
