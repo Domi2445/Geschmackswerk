@@ -319,6 +319,20 @@ header nav a:hover {
     #burger-menu {
         display: block !important;
     }
+    #success-message
+    {
+        margin-top: 60px !important;
+    }
+    #cart-header
+    {
+        margin-top: 50px;
+    }
+
+    #cart-panel
+    {
+        margin-top: 40px !important;
+        width: 300px !important;
+    }
 }
 @media (min-width: 701px) {
     #burger-menu {
